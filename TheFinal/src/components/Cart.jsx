@@ -1,9 +1,11 @@
 import React from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import { useCart } from '../context/CartContext';
+import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
   const { cartItems, removeFromCart, clearCart } = useCart();
+  const navigate = useNavigate(); // Initialize navigate
 
   const getTotalPrice = () => {
     return cartItems.reduce((total, item) => total + item.price, 0).toFixed(2);
@@ -12,6 +14,9 @@ const Cart = () => {
   return (
     <Box sx={{ p: 3 }}>
       <Typography variant="h4">Your Cart</Typography>
+      
+     
+
       {cartItems.length === 0 ? (
         <Typography variant="h6">Your cart is empty</Typography>
       ) : (
@@ -34,6 +39,14 @@ const Cart = () => {
             <Button variant="contained" color="primary" onClick={clearCart}>
               Clear Cart
             </Button>
+             {/* Back Button */}
+      <Button 
+        variant="outlined" 
+        onClick={() => navigate(-1)} // Go back to the previous page
+        sx={{ mb: 2 }}
+      >
+        Back
+      </Button>
           </Box>
         </Box>
       )}
