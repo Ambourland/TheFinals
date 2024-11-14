@@ -6,17 +6,17 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'; // Import cart icon
 import { useNavigate } from 'react-router-dom';
-import { useCart } from '../context/CartContext';
+import { useCart } from '../context/CartContext'; // Import CartContext to access cart items
 
 const Navbar = () => {
-  const navigate = useNavigate();
-  const { cartItems}  = useCart();
+  const navigate = useNavigate(); // Get the navigate function
+  const { cartItems } = useCart(); // Access cart items from CartContext
 
   return (
-    <Box  sx={{  flexGrow: 1,}}>
-      <AppBar id="nav"  position="static" >
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar id="nav" position="static">
         <Toolbar>
           <IconButton
             size="large"
@@ -27,15 +27,25 @@ const Navbar = () => {
           >
             <MenuIcon />
           </IconButton>
+
+          {/* Home Button */}
+          <Button color="inherit" onClick={() => navigate('/')}>
+            Home
+          </Button>
+
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            News
+            Angies Shop
           </Typography>
+
+          <Button color="inherit">Login</Button>
+
+          {/* Cart Icon with Item Count */}
           <IconButton
             color="inherit"
             onClick={() => navigate('/cart')}
             sx={{ position: 'relative' }}
           >
-               <ShoppingCartIcon />
+            <ShoppingCartIcon />
             {cartItems.length > 0 && (
               <Box
                 sx={{
@@ -57,12 +67,10 @@ const Navbar = () => {
               </Box>
             )}
           </IconButton>
-          <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
     </Box>
   );
-}
+};
 
-
-export default Navbar
+export default Navbar;

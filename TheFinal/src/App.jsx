@@ -1,11 +1,11 @@
-import './App.css'
-import Navbar from "./components/Navbar"
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import ProductList from './components/ProductList'
-import ProductDetails from './components/ProductDetails'
-import Cart from './components/Cart'
-import { ProductProvider } from './context/ProductContext'
-import { CartProvider } from './context/CartContext'
+import './App.css';
+import Navbar from './components/Navbar';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import ProductList from './components/ProductList';
+import ProductDetails from './components/ProductDetails';
+import Cart from './components/Cart';
+import { ProductProvider } from './context/ProductContext';
+import { CartProvider } from './context/CartContext';
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
         </CartProvider>
       </ProductProvider>
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+export default App;
