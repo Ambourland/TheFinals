@@ -10,15 +10,10 @@ const ProductProvider = ({ children }) => {
     getProductList().then((res) => {
       setProducts(res);
     });
-  }, []);
+  }, []); // Ensure this is empty to only run on mount
 
   return (
-    <ProductContext.Provider
-      value={{
-        products,
-        setProducts,
-      }}
-    >
+    <ProductContext.Provider value={{ products, setProducts }}>
       {children}
     </ProductContext.Provider>
   );
