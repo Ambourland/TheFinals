@@ -7,15 +7,26 @@ const ProductList = () => {
   const { products } = useContext(ProductContext); // Get products from ProductContext
   const [searchQuery, setSearchQuery] = useState(''); // Search query state
   const [categoryFilter, setCategoryFilter] = useState(''); // Category filter state
+  const [sortOrder, setSortOrder] = useState(''); // Sort order state (low to high, high to low)
 
   // Get unique categories from the products
   const categories = [...new Set(products.map((product) => product.category))];
 
-  // Filtered products based on search query and category
+  // Filter products based on search query and category
   const filteredProducts = products.filter((product) => {
     const matchesSearch = product.title.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesCategory = categoryFilter ? product.category === categoryFilter : true;
     return matchesSearch && matchesCategory;
+  });
+
+  // Sort products based on the selected sort order (low to high, high to low)
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    if (sortOrder === 'lowToHigh') {
+      return a.price - b.price;
+    } else if (sortOrder === 'highToLow') {
+      return b.price - a.price;
+    }
+    return 0; // No sorting
   });
 
   return (
@@ -47,16 +58,30 @@ const ProductList = () => {
             ))}
           </Select>
         </FormControl>
+
+        {/* Sort Dropdown */}
+        <FormControl fullWidth sx={{ maxWidth: '200px' }}>
+          <InputLabel>Sort by Price</InputLabel>
+          <Select
+            value={sortOrder}
+            onChange={(e) => setSortOrder(e.target.value)}
+            label="Sort by Price"
+          >
+            <MenuItem value="">None</MenuItem>
+            <MenuItem value="lowToHigh">Price: Low to High</MenuItem>
+            <MenuItem value="highToLow">Price: High to Low</MenuItem>
+          </Select>
+        </FormControl>
       </Box>
 
       {/* Product List */}
       <Box display="flex" flexWrap="wrap" gap={2}>
-        {filteredProducts.length === 0 ? (
+        {sortedProducts.length === 0 ? (
           <Box sx={{ width: '100%' }}>
             <p>No products found</p>
           </Box>
         ) : (
-          filteredProducts.map((item) => (
+          sortedProducts.map((item) => (
             <div
               style={{
                 display: 'flex',
