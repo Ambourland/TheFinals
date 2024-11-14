@@ -1,6 +1,7 @@
 import { useState, useContext } from 'react';
 import { ProductContext } from '../context/ProductContext';
 import { Box, TextField, MenuItem, Select, InputLabel, FormControl, Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
 import truncateString from '../utils/truncateString';
 
 const ProductList = () => {
@@ -8,6 +9,8 @@ const ProductList = () => {
   const [searchQuery, setSearchQuery] = useState(''); // Search query state
   const [categoryFilter, setCategoryFilter] = useState(''); // Category filter state
   const [sortOrder, setSortOrder] = useState(''); // Sort order state (low to high, high to low)
+  
+  const navigate = useNavigate(); // Initialize navigate to handle routing
 
   // Get unique categories from the products
   const categories = [...new Set(products.map((product) => product.category))];
@@ -83,6 +86,7 @@ const ProductList = () => {
         ) : (
           sortedProducts.map((item) => (
             <div
+              key={item.id}
               style={{
                 display: 'flex',
                 flexDirection: 'column',
@@ -92,7 +96,7 @@ const ProductList = () => {
                 justifyContent: 'space-between',
                 cursor: 'pointer',
               }}
-              key={item.id}
+              onClick={() => navigate(`/product-details/${item.id}`)} // Navigate to product details page on click
             >
               <img src={item.image} alt={item.title} />
               <h3>{truncateString(item.title, 20)}</h3>
