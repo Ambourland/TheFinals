@@ -19,13 +19,17 @@ const ProductDetails = () => {
   return (
     <Box display="flex" justifyContent="space-around" sx={{ height: '100vh' }}>
       <Box sx={{ height: '100vh', width: '50%' }}>
-        <img src={productDetails.image} alt={productDetails.title} />
+        <img id='image' src={productDetails.image} alt={productDetails.title} />
       </Box>
       <Box sx={{ p: 5 }}>
-        <p>{productDetails.title}</p>
+        <div id='border'>
+           <p>{productDetails.title}</p>
         <p>${productDetails.price}</p>
         <p>{productDetails.description}</p>
+        </div>
+       
         <Button onClick={() => addToCart(productDetails)}>Add to Cart</Button>
+        <br />
 
         {/* Back Button */}
         <Button 

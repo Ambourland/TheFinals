@@ -98,9 +98,9 @@ const ProductList = () => {
               }}
               onClick={() => navigate(`/product-details/${item.id}`)} // Navigate to product details page on click
             >
-              <img src={item.image} alt={item.title} />
+              <img id='imgM' src={item.image} alt={item.title} />
               <h3>{truncateString(item.title, 20)}</h3>
-              <p>{item.rating.rate}</p>
+              <p>Rating {item.rating.rate}</p>
               <p>${item.price}</p>
             </div>
           ))

@@ -1,3 +1,48 @@
 #nav {
     background-color: #12f41d;
 }
+
+#image {
+    padding: 40px;
+    width:350px;
+}
+#cart-img {
+    width: 100px;
+   height: 150px;
+}
+
+#imgM {
+    padding: 5px;
+    height: 150px;
+    width: 150px;
+}
+
+#imgM:hover {
+    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+    border-radius: 8px;
+  }
+
+  #border {
+    padding: auto;
+    border: 1px solid black;
+    border-radius: 8px;
+  }
+
+  p {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  #wrap {
+    text-align: left;
+    flex-wrap: wrap;
+    line-height: 20px;
+    width: 100px;
+    word-wrap: break-word;
+  }
+
+  #remove-btn {
+    margin: auto;
+    padding: auto;
+  }
+
